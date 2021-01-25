@@ -1,0 +1,4 @@
+#nathan add
+/vendor/bin/hw/vendor.nathan.hwstbcmdservice@1.0-service      u:object_r:hal_hwstbcmdservice_exec:s0
+# nathan add
+/data/vendor/nathandata(/.*)?       u:object_r:stb_data_file:s0

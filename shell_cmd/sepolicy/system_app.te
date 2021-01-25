@@ -1,0 +1,10 @@
+#nathan add
+allow system_app vnd_hwstbcmdservice_hwservice:hwservice_manager { find };
+allow system_app hal_hwstbcmdservice:binder { call transfer};
+#for write file
+allow system_app stb_data_file:file {write open getattr create read setattr append unlink};
+allow system_app stb_data_file:dir {create read open remove_name search write add_name getattr rmdir};
+#for getprop 
+allow system_app net_dns_prop:file {map};
+allow system_app apexd_prop:file {open getattr};
+allow system_app boottime_prop:file {open getattr map};

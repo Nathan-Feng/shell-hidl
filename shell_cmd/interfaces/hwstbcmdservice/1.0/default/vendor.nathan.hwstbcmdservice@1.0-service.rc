@@ -1,0 +1,8 @@
+on post-fs-data       
+    #nathan dvb
+    mkdir /data/vendor/nathandata 0770 system system
+
+service hwstbcmdservice-1-0 /vendor/bin/hw/vendor.nathan.hwstbcmdservice@1.0-service
+    class hal
+    user root
+    group root system

@@ -1,0 +1,11 @@
+// the Static library
+// ============================================================
+java_library_static {
+    srcs: ["java/**/*.java"],
+    proprietary: true,
+    name: "hishellcmd",
+    optimize: {
+        enabled: false,
+    },
+}
+

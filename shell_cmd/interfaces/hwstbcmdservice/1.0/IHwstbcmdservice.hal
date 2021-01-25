@@ -1,0 +1,4 @@
+package vendor.nathan.hwstbcmdservice@1.0;
+interface IHwstbcmdservice {
+	hsInvokeHal(string request,int32_t type) generates(string result);
+};

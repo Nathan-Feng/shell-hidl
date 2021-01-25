@@ -1,0 +1,304 @@
+type hal_hwstbcmdservice, domain;
+type hal_hwstbcmdservice_exec, exec_type, vendor_file_type, file_type;
+
+hwbinder_use(hal_hwstbcmdservice);
+type hwstbcmdservice_1_0_service, service_manager_type;
+
+init_daemon_domain(hal_hwstbcmdservice)
+add_hwservice(hal_hwstbcmdservice, vnd_hwstbcmdservice_hwservice)
+hwbinder_use(hal_hwstbcmdservice)
+vndbinder_use(hal_hwstbcmdservice)
+
+get_prop(hal_hwstbcmdservice, hwservicemanager_prop)
+
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { sys_nice };
+
+# Root fs.
+allow hal_hwstbcmdservice rootfs:dir { mounton r_file_perms search };
+allow hal_hwstbcmdservice rootfs:file { execute execute_no_trans r_file_perms };
+allow hal_hwstbcmdservice rootfs:lnk_file r_file_perms;
+
+
+
+# Device accesses.
+allow hal_hwstbcmdservice device:dir { write search add_name remove_name };
+allow hal_hwstbcmdservice dev_type:lnk_file r_file_perms;
+allow hal_hwstbcmdservice devpts:dir { write search };
+allow hal_hwstbcmdservice device:file read;
+allow hal_hwstbcmdservice socket_device:dir r_dir_perms;
+allow hal_hwstbcmdservice owntty_device:chr_file rw_file_perms;
+allow hal_hwstbcmdservice null_device:chr_file rw_file_perms;
+allow hal_hwstbcmdservice zero_device:chr_file rw_file_perms;
+allow hal_hwstbcmdservice ashmem_device:chr_file rw_file_perms;
+allow hal_hwstbcmdservice random_device:chr_file rw_file_perms;
+allow hal_hwstbcmdservice properties_device:file r_file_perms;
+
+allow hal_hwstbcmdservice system_server:fd use;
+allow hal_hwstbcmdservice proc:file { write read open getattr };
+allow hal_hwstbcmdservice kernel:fd { use };
+allow hal_hwstbcmdservice kernel:dir { search };
+allow hal_hwstbcmdservice kernel:file { read open };
+allow hal_hwstbcmdservice kernel:lnk_file { read };
+allow hal_hwstbcmdservice init:fd use;
+allow hal_hwstbcmdservice init:dir { search };
+allow hal_hwstbcmdservice init:file { read open };
+allow hal_hwstbcmdservice init:lnk_file { read };
+allow hal_hwstbcmdservice init:unix_stream_socket { connectto };
+allow hal_hwstbcmdservice ueventd:dir { search };
+allow hal_hwstbcmdservice ueventd:file { read open };
+allow hal_hwstbcmdservice ueventd:lnk_file { read };
+allow hal_hwstbcmdservice logd:dir { search };
+allow hal_hwstbcmdservice logd:file { read open };
+allow hal_hwstbcmdservice logd:lnk_file { read };
+allow hal_hwstbcmdservice healthd:dir { search };
+allow hal_hwstbcmdservice healthd:file { read open };
+allow hal_hwstbcmdservice healthd:lnk_file { read };
+allow hal_hwstbcmdservice lmkd:dir { search };
+allow hal_hwstbcmdservice lmkd:file { read open };
+allow hal_hwstbcmdservice lmkd:lnk_file { read };
+allow hal_hwstbcmdservice servicemanager:dir { search };
+allow hal_hwstbcmdservice servicemanager:file { read open };
+allow hal_hwstbcmdservice servicemanager:lnk_file { read };
+allow hal_hwstbcmdservice vold:dir { search };
+allow hal_hwstbcmdservice vold:file { read open };
+allow hal_hwstbcmdservice vold:lnk_file { read };
+allow hal_hwstbcmdservice surfaceflinger:dir { search };
+allow hal_hwstbcmdservice surfaceflinger:file { read open };
+allow hal_hwstbcmdservice surfaceflinger:lnk_file { read };
+allow hal_hwstbcmdservice netd:dir { search };
+allow hal_hwstbcmdservice netd:file { read open };
+allow hal_hwstbcmdservice netd:lnk_file { read };
+allow hal_hwstbcmdservice sysfs_devices_system_cpu:file { write };
+allow hal_hwstbcmdservice sysfs:file { open write read };
+allow hal_hwstbcmdservice system_app_data_file:file { write append getattr };
+allow hal_hwstbcmdservice kernel:system { syslog_read };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability2 { syslog };
+allow hal_hwstbcmdservice sdcardfs:dir { search remove_name open};
+allow hal_hwstbcmdservice sdcardfs:file { getattr write open read };
+allow hal_hwstbcmdservice device:chr_file { setattr };
+
+allow hal_hwstbcmdservice hal_hwstbcmdservice:udp_socket { create };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { net_raw };
+allow hal_hwstbcmdservice drmserver:dir { search };
+allow hal_hwstbcmdservice drmserver:file { read open };
+allow hal_hwstbcmdservice drmserver:lnk_file { read };
+allow hal_hwstbcmdservice mediaserver:dir { search };
+allow hal_hwstbcmdservice mediaserver:file { read open };
+allow hal_hwstbcmdservice mediaserver:lnk_file { read };
+allow hal_hwstbcmdservice installd:dir { search };
+allow hal_hwstbcmdservice installd:file { read open };
+allow hal_hwstbcmdservice installd:lnk_file { read };
+allow hal_hwstbcmdservice keystore:dir { search };
+allow hal_hwstbcmdservice keystore:file { read open };
+allow hal_hwstbcmdservice keystore:lnk_file { read };
+allow hal_hwstbcmdservice device:chr_file { ioctl };
+allow hal_hwstbcmdservice zygote:dir { search read };
+allow hal_hwstbcmdservice shell:dir { search read };
+allow hal_hwstbcmdservice system_server:dir { search read };
+allow hal_hwstbcmdservice platform_app:dir { search read };
+allow hal_hwstbcmdservice system_app:dir { search read };
+allow hal_hwstbcmdservice dhcp:dir { search read };
+allow hal_hwstbcmdservice untrusted_app:dir { search read };
+allow hal_hwstbcmdservice system_app:binder { call transfer };
+allow hal_hwstbcmdservice zygote:file { read open };
+allow hal_hwstbcmdservice shell:file { read open };
+allow hal_hwstbcmdservice system_server:file { read open };
+allow hal_hwstbcmdservice platform_app:file { read open };
+allow hal_hwstbcmdservice platform_app:dir { search };
+allow hal_hwstbcmdservice platform_app:lnk_file { read };
+allow hal_hwstbcmdservice system_app:file { read open };
+allow hal_hwstbcmdservice dhcp:file { read open };
+allow hal_hwstbcmdservice untrusted_app:file { read open };
+
+allow hal_hwstbcmdservice zygote:lnk_file { read open };
+allow hal_hwstbcmdservice shell:lnk_file { read open };
+allow hal_hwstbcmdservice system_server:lnk_file { read open };
+allow hal_hwstbcmdservice platform_app:lnk_file { read open };
+allow hal_hwstbcmdservice system_app:lnk_file { read open };
+allow hal_hwstbcmdservice dhcp:lnk_file { read open };
+allow hal_hwstbcmdservice untrusted_app:lnk_file { read open };
+# NTSC hardware test
+allow hal_hwstbcmdservice tmpfs:dir { search write add_name };
+allow hal_hwstbcmdservice tmpfs:lnk_file { getattr read };
+allow hal_hwstbcmdservice kernel:system { module_request };
+
+#for androidn recovery
+allow hal_hwstbcmdservice vold_device:blk_file { ioctl read getattr open };
+allow hal_hwstbcmdservice proc:file { read getattr open };
+allow hal_hwstbcmdservice proc:dir { search };
+
+#for androidn drm
+allow hal_hwstbcmdservice sdcardfs:file { unlink  };
+allow hal_hwstbcmdservice tee:unix_stream_socket { connectto };
+allow hal_hwstbcmdservice tee:fd { use };
+
+#allow hal_hwstbcmdservice toolbox_exec:file { getattr execute read open execute_no_trans };
+
+allow hal_hwstbcmdservice fuse:dir { search };
+allow hal_hwstbcmdservice fuse:file { read open getattr };
+allow hal_hwstbcmdservice sdcardd:file { open read };
+allow hal_hwstbcmdservice sdcardd:dir { search };
+allow hal_hwstbcmdservice sdcardd:lnk_file { read };
+allow hal_hwstbcmdservice storage_file:dir { search getattr };
+allow hal_hwstbcmdservice storage_file:lnk_file { getattr };
+allow hal_hwstbcmdservice surfaceflinger:binder { call };
+
+allow hal_hwstbcmdservice audioserver:file { open read };
+allow hal_hwstbcmdservice audioserver:dir { search };
+allow hal_hwstbcmdservice audioserver:lnk_file { read };
+allow hal_hwstbcmdservice mediaextractor:file { open read };
+allow hal_hwstbcmdservice mediaextractor:dir { search };
+allow hal_hwstbcmdservice mediaextractor:lnk_file { read };
+allow hal_hwstbcmdservice mediacodec:file { open read };
+allow hal_hwstbcmdservice mediacodec:dir { search };
+allow hal_hwstbcmdservice mediacodec:lnk_file { read };
+allow hal_hwstbcmdservice mediadrmserver:file { open read };
+allow hal_hwstbcmdservice mediadrmserver:dir { search };
+allow hal_hwstbcmdservice mediadrmserver:lnk_file { read };
+allow hal_hwstbcmdservice gatekeeperd:file { open read };
+allow hal_hwstbcmdservice gatekeeperd:dir { search };
+allow hal_hwstbcmdservice gatekeeperd:lnk_file { read };
+allow hal_hwstbcmdservice untrusted_app:lnk_file { open read };
+allow hal_hwstbcmdservice untrusted_app:dir { search };
+allow hal_hwstbcmdservice untrusted_app:file { read };
+allow hal_hwstbcmdservice radio:file { open read };
+allow hal_hwstbcmdservice radio:dir { search };
+allow hal_hwstbcmdservice radio:lnk_file { read };
+allow hal_hwstbcmdservice priv_app:file { open read };
+allow hal_hwstbcmdservice priv_app:dir { search };
+allow hal_hwstbcmdservice priv_app:lnk_file { read };
+
+#screenCapture write to /sdcard
+allow hal_hwstbcmdservice storage_file:lnk_file { read };
+allow hal_hwstbcmdservice mnt_user_file:dir { search getattr };
+allow hal_hwstbcmdservice mnt_user_file:file { read };
+allow hal_hwstbcmdservice mnt_user_file:lnk_file { read getattr };
+allow hal_hwstbcmdservice sdcardfs:dir { read write add_name };
+allow hal_hwstbcmdservice sdcardfs:file { create append};
+
+#internet
+allow hal_hwstbcmdservice hal_hwstbcmdservice:udp_socket { ioctl };
+
+#readDmsg
+allow hal_hwstbcmdservice sdcardfs:file { ioctl };
+allow hal_hwstbcmdservice kmsg_device:chr_file { read open };
+
+
+#getNetTime
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { sys_time };
+
+#reboot
+allow hal_hwstbcmdservice property_socket:sock_file { write };
+allow hal_hwstbcmdservice powerctl_prop:property_service { set };
+
+
+#reloadMac
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { net_admin };
+
+#reloadApk
+#allow hal_hwstbcmdservice zygote_exec:file { getattr execute read open execute_no_trans};
+allow hal_hwstbcmdservice system_server:unix_stream_socket { read write };
+allow hal_hwstbcmdservice dalvikcache_data_file:lnk_file { read getattr };
+#allow hal_hwstbcmdservice dex2oat_exec:file { execute read open execute_no_trans getattr };
+allow hal_hwstbcmdservice ashmem_device:chr_file { execute };
+allow hal_hwstbcmdservice overlay_prop:file { read open getattr };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:process { execmem };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { setgid setuid };
+allow hal_hwstbcmdservice vendor_shell_exec:file { execute_no_trans execute };
+
+#ddrTest
+#allow hal_hwstbcmdservice hal_hwstbcmdservice:sdcardfs { append };
+
+#sendmediastart
+#allow hal_hwstbcmdservice activity_service:service_manager find ;
+
+# for androido
+allow hal_hwstbcmdservice init:unix_dgram_socket { sendto };
+allow hal_hwstbcmdservice proc:file { read open getattr };
+allow hal_hwstbcmdservice sysfs:file  { read open };
+
+allow hal_hwstbcmdservice tmpfs:chr_file { read write open getattr ioctl };
+allow hal_hwstbcmdservice vendor_file:file { read open getattr execute };
+allow hal_hwstbcmdservice vndbinder_device:chr_file { read write open ioctl };
+allow hal_hwstbcmdservice vndservicemanager:binder { call transfer };
+
+allow hal_hwstbcmdservice vendor_file:file { execute_no_trans };
+#allow hal_hwstbcmdservice servicemanager:binder { call };
+
+#allow hal_hwstbcmdservice vendor_shell_exec:file { execute_no_trans execute };
+
+# android9.0
+allow hal_hwstbcmdservice debugfs_trace_marker:file { open write };
+allow hal_hwstbcmdservice proc_cmdline:file { read open getattr };
+allow hal_hwstbcmdservice vendor_data_file:dir { write open create getattr add_name remove_name setattr read rmdir };
+allow hal_hwstbcmdservice vendor_data_file:file { read write open create setattr getattr unlink };
+allow hal_hwstbcmdservice system_data_file:dir { getattr search};
+#for cms
+allow hal_hwstbcmdservice hal_hwstbcmdservice:netlink_route_socket {read create bind getattr write nlmsg_read};
+#allow hal_hwstbcmdservice system_file:file {getattr execute execute_no_trans map read open};
+allow hal_hwstbcmdservice hal_hwstbcmdservice:icmp_socket {create bind};
+allow hal_hwstbcmdservice hal_hwstbcmdservice:rawip_socket {read write create bind connect node_bind setopt};
+allow hal_hwstbcmdservice node:rawip_socket {create bind connect node_bind setopt};
+
+#allow hal_hwstbcmdservice tcpdump_exec:file {getattr read open  map};
+allow hal_hwstbcmdservice hal_hwstbcmdservice:packet_socket {create setopt getopt map read write};
+allow hal_hwstbcmdservice hal_hwstbcmdservice:packet_socket ioctl;
+allowxperm hal_hwstbcmdservice hal_hwstbcmdservice:packet_socket ioctl { SIOCGIFINDEX };
+#allow hal_hwstbcmdservice hal_hwstbcmdservice:capability {dac_override dac_read_search };
+allow hal_hwstbcmdservice vendor_toolbox_exec:file { getattr execute read open execute_no_trans };
+
+#for ps -A|grep
+allow hal_hwstbcmdservice vendor_init:dir {getattr search open};
+allow hal_hwstbcmdservice init:dir {getattr search open};
+allow hal_hwstbcmdservice kernel:dir {getattr search open};
+allow hal_hwstbcmdservice vendor_init:file {read open map};
+allow hal_hwstbcmdservice hal_hwstbcmdservice:file {read};
+allow hal_hwstbcmdservice su:file {read};
+dontaudit hal_hwstbcmdservice self:capability { sys_ptrace dac_read_search dac_override};
+
+#for kill
+allow hal_hwstbcmdservice su:process {sigkill};
+#for write file
+allow hal_hwstbcmdservice cache_file:file {read getattr};
+allow hal_hwstbcmdservice shell_data_file:file {read getattr};
+allow hal_hwstbcmdservice stb_data_file:dir { create read open remove_name search write add_name getattr rmdir};
+allow hal_hwstbcmdservice stb_data_file:file { setattr create read open write getattr unlink  };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { chown sys_admin};
+#for write key
+allow hal_hwstbcmdservice block_device:dir {getattr search open};
+allowxperm hal_hwstbcmdservice hal_hwstbcmdservice:udp_socket ioctl { 0x8924 };
+
+allow hal_hwstbcmdservice tee_device:chr_file { read write open ioctl};
+allowxperm hal_hwstbcmdservice tee_device:chr_file ioctl { 0xa400 0xa401 0xa402 0xa403 0xa404 0xa405};
+allow hal_hwstbcmdservice mediadrm_vendor_data_file:dir { write open create getattr add_name remove_name setattr read rmdir };
+allow hal_hwstbcmdservice mediadrm_vendor_data_file:file {read write open create setattr getattr };
+
+#for logcat
+allow hal_hwstbcmdservice hwservicemanager:file {read open getattr};
+allow hal_hwstbcmdservice hwservicemanager:dir {read search getattr};
+allow hal_hwstbcmdservice vndservicemanager:file {read};
+allow hal_hwstbcmdservice vndservicemanager:dir {read search getattr};
+allow hal_hwstbcmdservice ueventd:dir {read search getattr };
+allow hal_hwstbcmdservice logd:dir {read search getattr };
+allow hal_hwstbcmdservice hal_configstore_default:file {read };
+allow hal_hwstbcmdservice hal_configstore_default:file {read };
+#allow hal_hwstbcmdservice fwk_bufferhub:file {read };
+allow hal_hwstbcmdservice ashmemd:file {read };
+
+#for telnet
+allow hal_hwstbcmdservice hal_hwstbcmdservice:tcp_socket {create setopt bind listen accept write getattr read};
+allow hal_hwstbcmdservice port:tcp_socket {name_bind};
+allow hal_hwstbcmdservice node:tcp_socket {node_bind};
+allow hal_hwstbcmdservice devpts:chr_file {open read write ioctl getattr};
+allowxperm hal_hwstbcmdservice devpts:chr_file ioctl { 0x5410 };
+allow hal_hwstbcmdservice hal_hwstbcmdservice:capability { net_bind_service};
+
+#for getprop
+allow hal_hwstbcmdservice afbc_prop:file {open getattr map};
+allow hal_hwstbcmdservice apexd_prop:file {open getattr map};
+allow hal_hwstbcmdservice overlay_prop:file {map};
+
+#for ps -A|grep
+allow hal_hwstbcmdservice netd:dir {getattr};
+allow hal_hwstbcmdservice vold:dir {getattr};
+
